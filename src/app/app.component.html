@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>About</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td> 
+        <button (click)="EditProduct(product.id)" class="btn btn-success">Edit</button> 
+        &nbsp; 
+        <button (click)="DeleteProduct(product.id, product.name)" 
+        class="btn btn-warning">Delete</button> 
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td> 
+        <input type="number" [readonly]="isEdit" [(ngModel)]="product.id" 
+        placeholder="Product Id" /> 
+      </td>
+      <td> 
+        <input type="text" [(ngModel)]="product.name" 
+        placeholder="Name" /> 
+      </td>
+      <td> 
+        <input type="text" [(ngModel)]="product.price" placeholder="Price" /> 
+      </td>
+      <td> 
+        <button *ngIf="!isEdit" class="btn btn-primary" (click)="AddProduct()" 
+        class="btn btn-primary">Add</button>
+        <button *ngIf="isEdit" class="btn btn-primary" (click)="UpdateProduct()"
+          class="btn btn-primary">Update</button>
+      </td>
+    </tr>
+  </tfoot>
+</table>
